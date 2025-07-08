@@ -7,26 +7,25 @@ This repository contains a Python notebook that implements a multi-strategy auto
 - Connects to an exchange server (Optibook)
 - Retrieves live order books, trades, and positions  
 - Executes automated trades based on multiple strategies  
-- Dynamically adjusts order volumes as a function of market spread  
 - Monitors and manages inventory & PnL
+  
+The autotrader primarily uses the following strategies - 
 
-### Market Making
+### (i) Market Making
 - Continuously quotes buy and sell orders around the mid-price.
 - Targets capturing the bid-ask spread.
-- **Adaptive volume:** order size increases with the spread, aiming to capitalize more when spreads are wide.
 
-### Pair Trading Arbitrage
+### (ii) Pair Trading Arbitrage
 - Monitors price relationships between two correlated instruments (e.g. futures vs ETF, or similar underlyings).
 - Places offsetting trades to exploit deviations from expected price ratios.
 - Positions are managed to converge back to the mean.
 
-### Lead-Lag Strategy
+### (iii) Lead-Lag Strategy
 - Identifies instruments where one typically moves slightly ahead of another (the *leader* and *lagger*).
 - Uses movements in the leader to predict short-term movements in the lagger, placing trades to capture this microstructure inefficiency.
 
 
-## Dynamic Volume as a Function of Spread
-Across these strategies, the bot adjusts the order size (volume) depending on the current spread:
+Across all these strategies, the bot adjusts the order size (volume) depending on the current spread:
 - **Tight spreads → smaller volume:** protects against excessive trading costs.
 - **Wide spreads → larger volume:** captures bigger opportunities.
 
